@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Matador de Monstro</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div class="panel scores">
+            <div class="score">
+                <h1>Jogador (level: {{ nivelJogador}})<br>
+                    <small class="score"> modo: {{ modo }}</small>
+                </h1>
+                <div>
+                    <template v-if="iop">
+                        <img src="elia.jpg" style="margin-bottom: 40px; height: 180px;" @click="ativarEspecial">
+                        <img src="heroi.webp" alt="" srcset="" :style="{'height': tamanhoJogador}"
+                            @click="ativarAtaque">
+                        <img src="eni.jpg" style="margin-bottom: 50px;height: 190px;" @click="ativarCura">
+                    </template>
+                    <template v-if="elio">
+                        <img src="heroi.webp" style="margin-bottom: 40px; height: 180px;" @click="ativarAtaque">
+                        <img src="elia.jpg" alt="" srcset="" :style="{'height': tamanhoJogador}"
+                            @click="ativarEspecial">
+                        <img src="eni.jpg" style="margin-bottom: 50px;height: 190px;" @click="ativarCura">
+                    </template>
+                    <template v-if="eni">
+                        <img src="elia.jpg" style="margin-bottom: 40px; height: 180px;" @click="ativarEspecial">
+                        <img src="eni.jpg" alt="" srcset="" :style="{'height': tamanhoJogador}" @click="ativarCura">
+                        <img src="heroi.webp" style="margin-bottom: 50px;height: 190px;" @click="ativarAtaque">
+                    </template>
+
+                </div>
+
+                <div class="life-bar">
+                    <div class="life" :style="{'width': sangueJogadorPercentual+'%'}"
+                        :class="{danger: sangueJogador<20 }"></div>
+                </div>
+                <div><b>{{ sangueJogadorPercentual }} % [qtd: {{ sangueJogador }}]</b></div>
+            </div>
+            <div class="score">
+                <h1>Monstro (level: {{ nivelMonstro}})</h1>
+                <span :style="{'height': tamanhoSpan}"></span>
+                <img src="m2.webp" alt="" srcset="" :style="{'height': tamanhoMonstro}">
+
+                <div class="life-bar">
+                    <div class="life" :style="{'width': sangueMonstroPercentual+'%'}"
+                        :class="{danger: sangueMonstro<20 }"> </div>
+                </div>
+                <div><b>{{ sangueMonstroPercentual }} % [qtd: {{ sangueMonstro }}]</b></div>
+                <br>
+                <button @click="apenasUmExemploDeAtributoDinamico">Exemplo de Atributo Dinâmico</button>
+                <button @click="outroExemploDeAtributoDinamico('sangueMonstro')">Outro Exemplo de Atributo
+                    Dinâmico</button>
+            </div>
+        </div>
+        <div class=" panel result">
+            <div class="win" v-if="ganhou">Você ganhou!!! :)</div>
+            <div class="lose" v-if="perdeu">Você perdeu! :(</div>
+        </div>
+        <div class="panel buttons">
+            <template>
+                <button class="btn attack" @click="atacar">Ataque</button>
+                <button class="btn especial-attack" @click="ataqueEspecial" :disabled="ataquesEspeciais == 0">Ataque
+                    Especial( {{ ataquesEspeciais }}
+                    )</button>
+                <button class="btn heal" @click="curar">Curar</button>
+                <button class="btn give-up" @click="desistir" v-if="!perdeu && !ganhou">Desistir</button>
+                <button class="btn " @click="fugir" v-if="!perdeu && !ganhou && log.length == 0 && nivelMonstro > 1"
+                    :disabled="fugas == 0">Fugir ({{ fugas }})</button>
+            </template>
+            <button class="btn new-game" v-if="log.size == 0 || !ganhou && perdeu" @click="zerarTudo">Tentar
+                Novamente</button>
+            <button class="btn new-game" v-if="log.size == 0 || ganhou && !perdeu" @click="proximaPartida">Próxima
+                Partida</button>
+        </div>
+        <div class="panel logs">
+            <ul>
+                <span v-for="l in log">
+                    <li v-for="(valor, chave) in l" :key="valor" :class="chave == 'monstro' ? 'monster': 'player'">
+                        {{ valor }}
+                    </li>
+                </span>
+            </ul>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+
+</html>

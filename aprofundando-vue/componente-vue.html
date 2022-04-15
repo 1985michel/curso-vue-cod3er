@@ -1,0 +1,58 @@
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
+
+
+
+<!-- ONDE ENCONTRAR DADOS:
+https://br.vuejs.org/v2/guide/ -->
+
+
+
+
+
+
+
+<div id="app">
+    <!-- <comp></comp>    Lembre-se que isso ainda não é um componente. É uma instância viu que vai ser injetada aqui, não um componente.      -->
+    <comp></comp>
+    <comp></comp>
+    <comp></comp>
+    <comp></comp>
+</div>
+
+
+<script>
+
+    //abaixo temos uma estrutura de um cmoponente de verdade
+    Vue.component('comp', {
+        template: `
+        <div>
+            <h1> {{ aula }}</h1>
+            <h2>{{ modulo }}</h2>
+            <button @click="alterarAula">Alterar Aula</button>
+            <button @click="alterarModulo">Alterar Modulo</button>
+        </div>        
+        `,
+        //preste atenção que o data fica diferente em um componente!!!! É uma função que retorna os dados
+        data: function () {
+            return {
+                aula: 'Aula: Montando Instância Vue',
+                modulo: 'Modulo: Instância Vue'
+            }
+        },
+        methods: {
+            alterarAula() {
+                this.aula += '#'
+            },
+            alterarModulo() {
+                this.modulo += '#'
+            }
+        }
+    })
+
+    const vm = new Vue({
+        el: '#app',
+    })
+
+</script>

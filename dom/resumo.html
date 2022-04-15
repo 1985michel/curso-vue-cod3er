@@ -1,0 +1,395 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
+<style>
+    .display {
+        display: flex;
+        justify-content: space-around;
+        height: 110px;
+        border: 1px solid #000;
+    }
+
+    .padrao {
+        border: 1px solid #000;
+        width: 100px;
+        height: 100px;
+    }
+
+
+    .classe1 {
+        background-color: blue;
+    }
+
+    .classeAzul {
+        background-color: blue;
+    }
+
+    .classeVermelha {
+        background-color: red;
+    }
+
+    .classeBranca {
+        background-color: white;
+    }
+
+    .classe2 {
+        background-color: pink;
+    }
+
+    .classe3 {
+        background-color: greenyellow;
+    }
+
+    .centerText {
+        text-align: center;
+        vertical-align: middle;
+
+    }
+
+    .comBorda {
+        border: 10px blueviolet;
+        border-style: solid;
+    }
+
+    .girar {
+        transform: rotate(45deg);
+    }
+</style>
+
+
+<h1>Resumo de DOM</h1>
+
+
+<h2>Primeiro a Base:</h2>
+
+<div id="base">
+    <p>Aqui vou apresentar de maneira didática todas as funcionalidades que aprendi nesta sessão.</p>
+
+
+    <h3>1 - Povoando uma string na view:</h3>
+
+    <p>{{ minhaString }}</p>
+
+    <p>Outro jeito de fazer isso é com o v-bind:value. Veja: <input v-bind:value="minhaString"></input></p>
+
+    <p>Fazendo cálculos dentro do bind (5 x 2): {{ meuNumero * 2}}</p>
+
+    <p>Operador Ternário dentro do Binding (o número é 5): {{ meuNumero > 10 ? "Maior que dez!": "Menor que dez..."}}
+    </p>
+
+    <hr>
+
+    <h3>2 - Povoando uma string originária de um método</h3>
+
+    <p>{{ meuMetodo() }}</p>
+
+    <hr>
+
+    <h3>3 - Povoando uma string vinda de um método usando uma variável</h3>
+
+    <p>{{ meuMetodoComVariavel() }}</p>
+
+    <hr>
+
+    <h3>4 - Fazendo o bind de um link</h3>
+
+    <a v-bind:href="meuLink">Google</a>
+
+    <hr>
+
+    <h3>5 - Lembre-se que sempre que uma variável é alterada o Vue a atualiza em toda a view</h3>
+
+    <p>{{ minhaString }}</p>
+
+    <button v-on:click="atualizarMinhaString()">Atualizar minhaString</button>
+
+    <p><strong>Note que a string de nº1 também foi atualizada!</strong></p>
+
+    <hr>
+
+    <h3>6 - Injetando HTML</h3>
+
+    <p v-html="meuHtmlFromJS"></p>
+
+</div>
+
+<br><br>
+
+<h2>Agora Propriedades Reativas</h2>
+
+<div id="propriedadesReativas">
+
+    <h3>Two-way biding:</h3>
+
+    <p>O two-way data binding faz com que se alterar a variável, altere o tela e se alterar a tela, altera a variável
+    </p>
+
+
+    <p>Jeito comprido: v-bind:value + v-on:input : <input type="text" v-bind:value="meuValor"
+            v-on:input="meuValor= $event.target.value"></p>
+
+
+
+    <p>Jeito prático: v-model : <input type="text" v-model="meuValor"></p>
+
+    <br>
+    <hr>
+
+    <br><br>
+
+    <h3>Propriedades computadas</h3>
+
+    <p>Atenção!Propriedades computadas são síncronas, chamou a propriedade obrigatoriamente você precisa retornar um
+        valor</p>
+
+    <p>Vamos criar dois botões para aumentar e diminuir uma variável, aumentando 2 e diminuindo 1. <br> Se der 11,
+        aparece
+        "GANHOU!"</p>
+
+    <br>
+
+    <button v-on:click="aumentar2"> +2 </button>
+    <button v-on:click="diminuir1"> -1 </button>
+    <span>Resultado: {{ resultado }} {{ ganhou }}</span>
+
+    <br>
+    <hr>
+
+    <br><br>
+
+    <h3>Watch: Observador [Há um timer aqui: setTimeOut]</h3>
+
+    <p>Atenção: o nome do watch tem que ser o mesmo nome do data que você vai monitorar, e ele sempre recebe por
+        parâmetro o novo valor e o antigo.</p>
+
+    <p>Geralmente watch são usados para chamadas em servidor, requisições ajax, etc.</p>
+
+    <p>Aqui vamos fazer com que o input retorne a um valor pré-estabelecido a cada 10 segundos:</p>
+
+    <input type="text" v-model="queroEsse">
+
+
+
+
+
+</div>
+
+<br><br>
+
+<h2>>>>>>>>>>>>>> Então vamos falar sobre CSS <<<<<<<<<<<< </h2>
+
+        <h3>1 - Vamos atribuir uma classe a uma div ao clicar sobre ela</h3>
+
+        <h2 style="background-color: red; color: black;">Atenção! <br> @click = v-on:click<br>:class = v-bind:class</h2>
+
+        <div id="vueComEstilo">
+
+            <p>Previamente vamos deixar criadas 3 classes em CSS. Os nomes serão classe1, classe2 e classe3. Vou também
+                criar a
+                classe "display" para fazer as divs ficarem lado a lado.</p>
+
+            <p>Daí vou criar a estrutura de um novo Vue. Vou criar em cima dos outros para não ter que ficar rolando a
+                página.
+            </p>
+
+            <p>O objetivo será que ao clicar em cada div, que ela assuma o css de uma classe.</p>
+
+            <div class="display">
+                <div class="padrao" :class="{classe1 : ativa1}" @click="aplicar1()"> 1 </div>
+                <div class="padrao" :class="{classe2 : ativa2}" @click="aplicar2()"> 2 </div>
+                <div class="padrao" :class="{classe3 : ativa3}" @click="aplicar3()"> 3 </div>
+            </div>
+
+
+            <h3>2 - Vamos decidir qual classe aplicar por meio de uma propriedade computada</h3>
+
+            <p>Ao clicar sobre a div o sistema vai decidir qual cor colocar com base no número que foi digitado:<br>
+                se for par, azul;<br>
+                se for ímpar, vermelho.</p>
+
+
+
+            <p>Informe um número: <input type="text" @input="updateNumeroInformado"></p>
+            <!-- <p>Informe um número: <input type="text" @input="numeroInformado = $event.target.value"></p> Assim tb funciona-->
+
+
+            <div class="display">
+                <div class="padrao" :class="estiloDinamico">
+                    <p class="centerText"> {{numeroInformado}} </p>
+                </div>
+
+                <div class="padrao" :class="estiloDinamicoMultiplasClasses">
+                    <p class="centerText">Multiplas Classes</p>
+                    <p class="centerText"> {{numeroInformado}} </p>
+                </div>
+
+                <div class="padrao" :class="[estiloDinamico, {girar: aplicarGirar}]">
+                    <p class="centerText">Classe com condicional no elemento</p>
+                    <p class="centerText"> {{numeroInformado}} </p>
+                </div>
+
+                <div class="padrao" :class="[estiloDinamico, 'girar']">
+                    <p class="centerText">Estrutura de Array</p>
+                    <p class="centerText"> {{numeroInformado}} </p>
+                </div>
+
+                <div class="padrao" :class="giraGira" @click="devoGirar = !devoGirar">
+                    <p class="centerText">Gira ao clicar</p>
+                </div>
+            </div>
+            <br>
+        </div>
+
+        <hr>
+
+        <br>
+        <h3>Vamos agora falar de Estilo (sem classe)</h3>
+        <br>
+        <div id="estiloDiretoSemClasses">
+            <p>Informe uma cor em inglês: <input type="text" v-model="cor"></p>
+            <p>Informe uma largura em px: <input type="text" v-model="largura">px</p>
+            <div class="display">
+                <div class="padrao" :style="{'background-color': cor}">Entre aspas</div>
+                <div class="padrao" :style="{backgroundColor: cor}">CamelCase</div>
+                <div class="padrao" :style="estiloComputado">Estilo Computado em tempo real</div>
+                <div class="padrao" :style="[estiloComputado, {height: altura}]">Estilo composto com notação de array e
+                    bind direto
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+        <script>
+
+            /* estilos diretos, sem classes */
+
+            new Vue({
+                el: "#estiloDiretoSemClasses",
+                data: {
+                    cor: 'blue',
+                    largura: 100,
+                    altura: 120
+                },
+                computed: {
+                    estiloComputado() {
+                        return {
+                            backgroundColor: this.cor,
+                            width: this.largura + 'px'
+                        }
+                    }
+                }
+            })
+
+            /* classes */
+            new Vue({
+                el: '#vueComEstilo',
+                data: {
+                    ativa1: false,
+                    ativa2: false,
+                    ativa3: false,
+                    numeroInformado: 0,
+                    aplicarGirar: false,
+                    devoGirar: false
+                },
+                computed: {
+                    estiloDinamico() {
+
+
+                        this.aplicarGirar = this.numeroInformado == 0
+
+
+                        return {
+                            classeAzul: this.numeroInformado % 2 == 0 && this.numeroInformado != 0,
+                            classeVermelha: this.numeroInformado % 2 != 0,
+                            classeBranca: this.numeroInformado == 0
+                        }
+                    },
+                    estiloDinamicoMultiplasClasses() {
+                        return {
+                            'classeAzul comBorda': this.numeroInformado % 2 == 0 && this.numeroInformado != 0,
+                            classeVermelha: this.numeroInformado % 2 != 0,
+                            classeBranca: this.numeroInformado == 0
+                        }
+                    },
+                    giraGira() {
+                        return {
+                            girar: this.devoGirar
+                        }
+                    }
+
+
+                },
+                methods: {
+                    aplicar1() {
+                        this.ativa1 = !this.ativa1
+                    },
+                    aplicar2() {
+                        this.ativa2 = !this.ativa2
+                    },
+                    aplicar3() {
+                        this.ativa3 = !this.ativa3
+                    },
+                    updateNumeroInformado() {
+                        this.numeroInformado = event.target.value
+                    }
+
+                }
+            })
+
+            new Vue({
+                el: '#base',
+                data: {
+                    minhaString: 'Usando VueJS!',
+                    meuNumero: 5,
+                    variavelParaOMetodo: 'Sou uma variável!',
+                    meuLink: 'http://www.google.com',
+                    meuHtmlFromJS: '<a href="http://google.com.br">Google</a>'
+                },
+                methods: {
+                    meuMetodo() {
+                        return "Venho de um método!"
+                    },
+                    meuMetodoComVariavel() {
+                        return this.variavelParaOMetodo;
+                    },
+                    atualizarMinhaString() {
+                        this.minhaString = "O Vue me atualizou!"
+                    }
+                }
+            })
+
+            new Vue({
+                el: '#propriedadesReativas',
+                data: {
+                    meuValor: 'Tenho Meus valores!',
+                    resultado: 0,
+                    queroEsse: ''
+                },
+                computed: {
+                    ganhou() {
+                        return this.resultado == 11 ? "GANHOU!!!" : ''
+                    }
+                },
+                watch: {
+                    queroEsse(novo, antigo) {
+                        setTimeout(() => { //ha também o setInterval que fica ciclando para sempre
+                            this.queroEsse = antigo;
+                        }, 5000) //5 segundos
+                    }
+                },
+                methods: {
+                    aumentar2() {
+                        this.resultado += 2
+                    },
+                    diminuir1() {
+                        this.resultado -= 1
+                    }
+                }
+            })
+
+        </script>

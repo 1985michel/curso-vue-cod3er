@@ -1,0 +1,29 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
+<div id="app">
+
+    <p>
+        {{ titulo }}
+    </p>
+
+    <!-- O exemplo abaixo é o two way data binding: ou seja, a variável "titulo" determina o conteúdo do input e alterações no input alteram o valor da variável título -->
+    <p>Two-way data biding:</p>
+    <input type="text" v-bind:value="titulo" v-on:input=" titulo= $event.target.value">
+
+    <!-- 
+    O v-model faz as duas coisas com um só comando! -->
+    <p>v-model</p>
+    <input type="text" v-model="titulo">
+
+
+</div>
+
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            titulo: 'Usando VueJS!'
+        }
+    })
+</script>

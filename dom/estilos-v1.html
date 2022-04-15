@@ -1,0 +1,47 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
+<style>
+    #app {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .demo {
+        width: 100px;
+        height: 100px;
+        background-color: gray;
+    }
+
+    .c1 {
+        background-color: red;
+    }
+
+    .c2 {
+        background-color: green;
+    }
+
+    .c3 {
+        background-color: blue;
+    }
+</style>
+
+<div id="app">
+    <!-- @click="aplicarC1 = !aplicarC1" <<< v-on:click - ao clicar, alterar o valor de aplicarC1 entre verdadeiro e falso -->
+    <!-- :class="{c1: aplicarC1}" <<< v-bind:class acrescenta às classes a classe "c1": e um valor V/F se deve ou não aplicar aquela     
+        classe -->
+
+    <!-- Se você quiser usar um nome de classe que seja contrário aos noves de variaveis js, use aspas: .cor-1 >>>> :class="{'cor-1': aplicarC1}" -->
+    <div class="demo" :class="{c1: aplicarC1}" @click="aplicarC1 = !aplicarC1"></div>
+    <div class="demo"></div>
+    <div class="demo"></div>
+
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            aplicarC1: false
+        }
+    })
+</script>

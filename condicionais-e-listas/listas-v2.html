@@ -1,0 +1,39 @@
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
+<div id="app">
+    <ul>
+        <!-- primeiro o valor e depois o índice -->
+        <li v-for="(cor, i) in cores" :teste="cor">{{i+1}}) {{ cor }}</li><!--  i + 1 é pra não ter a posição 0 -->
+    </ul>
+
+</div>
+
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            cores: ['vermelho', 'verde', 'amarelo', 'azul'],
+            pessoas: [
+                { nome: 'Ana', idade: 26, peso: 59 },
+                { nome: 'Guilherme', idade: 22, peso: 89 }
+            ]
+        },
+        methods: {
+            getFrutas2() {
+                return getFrutas();
+            }
+        }
+    })
+
+
+
+</script>
+
+<style>
+    ul {
+        list-style: none;
+        /* oculta as bolinhas ao lado de cada item */
+    }
+</style>

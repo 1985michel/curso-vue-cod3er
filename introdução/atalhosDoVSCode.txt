@@ -1,0 +1,32 @@
+
+
+1 - COMPLEMENTAÇÃO DE CÓDIGO HTML
+
+* REGRAS: 
+    # é id
+    . é class
+    [] é atributo
+
+
+* EXEMPLOS:
+
+html:5
+    cria toda a estrutura do html5
+
+div#conteudo
+    faz o VS gerar: <div id="conteudo"></div>
+
+input#text
+    faz o VS gerar: <input type="text" id="text">
+
+div.estilo-1
+    <div class="estilo-1"></div>  
+
+div#teste.estilo2
+    <div id="teste" class="estilo2"></div>
+
+p[atributo]
+    <p atributo=""></p>
+
+p[meuAtributo]#meuId.minhaClasse
+    <p meuAtributo="" id="meuId" class="minhaClasse"></p>

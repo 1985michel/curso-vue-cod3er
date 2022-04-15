@@ -1,0 +1,53 @@
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
+<div id="app">
+
+
+    <p>key serve para o vue para dizer a identidade do elemento gerado. Ele não havarece no HTML, apenas permite ao vue
+        rastrear, ficando mais leve a renderização</p>
+
+    <ul>
+        <li v-for="(cor, i) in cores" :key="cor">
+            {{ i + 1}} {{ cor }}
+        </li>
+    </ul>
+    <button @click="cores.push('Branco')">Adicionar</button>
+
+
+</div>
+
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            cores: ['vermelho', 'verde', 'amarelo', 'azul'],
+            pessoas: [
+                { nome: 'Ana', idade: 26, peso: 59 },
+                { nome: 'Guilherme', idade: 22, peso: 89 }
+            ]
+        },
+        methods: {
+            getFrutas2() {
+                return getFrutas();
+            }
+        }
+    })
+
+
+
+</script>
+
+<style>
+    ul {
+        list-style: none;
+        /* oculta as bolinhas ao lado de cada item */
+    }
+
+    h1,
+    p {
+        display: inline;
+        /* mesma linha */
+    }
+</style>

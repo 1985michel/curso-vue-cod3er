@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+
+        <p>
+            {{ titulo }}
+        </p>
+
+        <p>
+            {{ nome }}
+        </p>
+
+        <!-- <p>
+            {{ aluno2.nome }}
+        </p>
+
+        <p>
+            {{ aluno2.sexo }}
+        </p>
+
+        <p>
+            {{ aluno2.cidade }} -->
+        </p>
+
+
+
+        <input type="text" v-model="aluno.nome">
+
+    </div>
+
+
+
+
+    <script>
+
+        class Aluno {
+            constructor(nome, idade, curso) {
+                this.nome = nome;
+                this.idade = idade;
+                this.curso = curso;
+                //this.buildGettersAndSetters([nome, idade, curso]);
+            }
+
+            /* buildGettersAndSetters(params) {
+                this.$el = document.querySelector(params.el);
+                this.$data = params.data;
+
+                for (let atr in this.$data) {
+                    Object.defineProperty(this, atr, {
+                        get: () => {
+                            return this.$data[atr];
+                        },
+                        set: value => {
+
+
+                            this.$data[atr] = value;
+
+
+                        }
+                    })
+                }
+            } */
+        }
+    </script>
+
+    <script>
+
+        let aluno2 = new Aluno('Maria', 20, 'Letras');
+
+        //aluno2.nome
+
+        aluno2.sexo = 'masculino';
+
+        new Vue({
+            el: '#app',
+            data: {
+                titulo: 'Usando VueJS!',
+                aluno: new Aluno('Michel', 37, 'Direito'),
+                nome: aluno2.nome
+            },
+            computed: {
+
+            }
+        })
+
+        aluno2.cidade = "Morrinhos";
+
+
+        //aluno2.nome = 'Tereza';
+    </script>
+
+
+</body>
+
+</html>

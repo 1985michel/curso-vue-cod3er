@@ -1,0 +1,39 @@
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
+<div id="app">
+
+    <template v-if="logado">
+        <!-- Atenção! Quando usamos v-if, v-else-if, v-else os elemntos não exibidos são retirados da página, não somente ocultados como no CSS -->
+        <!-- template é usado para rendeziração condicional sem que a tag template apareça no HTML -->
+        <p> Usuário Logado: {{ nome }}</p>
+        <p>Perfil: Admin</p>
+    </template>
+
+    <p v-else-if="anonimo">Navegando como Anônimo</p>
+    <p v-else>Nenhum usuário logado.</p>
+    <button @click="logado = !logado"> {{ logado ? 'Sair' : 'Entrar'}}</button>
+    <input type="checkbox" v-model="anonimo">
+    <br>
+    <hr>
+    <footer v-show="logado">
+        <!-- v-show aplica display none -->
+        Desenvolvido para vc!
+    </footer>
+    <footer v-show="!logado">
+        <!-- v-show não tem else, então se quiser criar o arranjo, tem que repetir negando a condição do primeiro -->
+        Desenvolvido para vc que é desconhecido
+    </footer>
+</div>
+
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            nome: 'Maria',
+            logado: false,
+            anonimo: false
+        }
+    })
+</script>

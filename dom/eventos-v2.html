@@ -1,0 +1,39 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
+<div id="app">
+
+    <p>
+        {{ contador }}
+        <!-- lembre-se que sempre que há uma mudança do dado a view é atualizada automaticamente 
+        se não quiser que altere use v-once -->
+    </p>
+
+    <!-- v-on:click é um observer do click do botão, chamando a função desiginada "somar" -->
+    <button v-on:click="somar">Somar 1</button>
+
+    <p v-on:mousemove="atualizarXY">Mouse: {{x}} e {{y}}</p>
+
+</div>
+
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            contador: 0,
+            x: 0,
+            y: 0
+        },
+        methods: {
+            somar() {
+                this.contador++
+            },
+            atualizarXY(event) {
+                /* função que monitora o movimento do mouse sobre o parágrafo */
+                this.x = event.clientX
+                this.y = event.clientY
+            }
+        }
+
+    })
+</script>

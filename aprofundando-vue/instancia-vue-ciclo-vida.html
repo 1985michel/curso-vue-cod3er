@@ -1,0 +1,52 @@
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
+
+
+<div id="app">
+    <h1>{{ titulo }}</h1>
+    <button @click="titulo += '#'">Alterar Título</button>
+    <!-- 
+        a função destroy é do vue, não precisa criar
+        Ao destruir o template fica extamente como estava, mas o Vue para de atuar sobre ele.
+    
+    -->
+    <button @click="$destroy()">Destruir</button>
+</div>
+
+
+<script>
+
+    new Vue({
+        el: '#app',
+        data: {
+            titulo: 'Ciclo de Vida',
+        },
+        //se atente que os métodos abaixo ficam diretamente na instância e não dentro de methods
+        beforeCreate() {
+            console.log('Antes de Criar');
+        },
+        created() {
+            console.log('Criado');
+        },
+        beforeMount() {
+            console.log('Antes de Montar (DOM)');
+        },
+        mounted() {
+            console.log('Dom montada');
+        },
+        beforeUpdate() {
+            console.log('Antes de atualizar');
+        },
+        updated() {
+            console.log('Atualizado');
+        },
+        beforeDestroy() {
+            console.log('Antes de dentruir');
+        },
+        destroyed() {
+            console.log('Destruido');
+        }
+    })
+
+</script>

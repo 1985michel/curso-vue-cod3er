@@ -1,0 +1,43 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
+
+
+
+<!-- ONDE ENCONTRAR DADOS:
+https://br.vuejs.org/v2/guide/ -->
+
+
+
+
+
+
+
+<div id="app">
+    <h1 ref="aulaRef"> {{ aula }}</h1>
+    <h2>{{ modulo }}</h2>
+    <button @click="alterarAula">Alterar Aula</button>
+    <button @click="alterarModulo">Alterar Modulo</button>
+
+</div>
+
+
+<script>
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            aula: 'Aula: Usando Refs',
+            modulo: 'Modulo: Instância Vue'
+        },
+        methods: {
+            alterarAula() {
+                this.aula += '#'
+            },
+            alterarModulo() {
+                this.modulo += '#'
+
+                //abaixo pega o valor do h1 marcado com Aularef
+                console.log(this.$refs.aulaRef.innerText);
+            }
+        }
+    })
+</script>

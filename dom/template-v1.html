@@ -1,0 +1,51 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
+<div id="app">
+
+    <p>
+        {{ titulo }}
+    </p>
+
+    <p>
+        {{ teste() }}
+    </p>
+
+    R$ <input type="number" id="money" @keyup="formata">
+    testein: <input type="text" id="money2" v-model.lazy="testein">
+
+</div>
+
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            titulo: 'Usando VueJS!',
+            testein: '',
+        },
+        watch: {
+            testein(novo, antigo) {
+                alert('foi alterado')
+                money2.value = 'alterado';
+
+            }
+        },
+        methods: {
+            teste() {
+                return 'Passou no teste'
+            },
+            formata() {
+                let valor = money.value;
+                console.log(`chegou o valor: ${valor}`)
+
+
+                let dinheiro = 10;
+
+                let saida = parseFloat(dinheiro).toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
+                saida = saida.replace('R$', '');
+                console.log(`saiu o valor: ${saida}`);
+                money.value = saida;
+            }
+        }
+    })
+</script>

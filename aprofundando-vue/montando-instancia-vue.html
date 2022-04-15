@@ -1,0 +1,62 @@
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
+
+
+
+<!-- ONDE ENCONTRAR DADOS:
+https://br.vuejs.org/v2/guide/ -->
+
+
+
+
+
+
+
+<div id="app">
+    <!-- <h1> {{ aula }}</h1>
+    <h2>{{ modulo }}</h2>
+    <button @click="alterarAula">Alterar Aula</button>
+    <button @click="alterarModulo">Alterar Modulo</button> -->
+
+</div>
+
+
+<script>
+    const vm = new Vue({
+        //el: '#app',
+
+        //abaixo renderizando com o template, ele injeta na div selecionada.
+        //o template tem que ser estruturado dentro de um único elemento raiz, abaixo, dentro de uma div (exemplo)
+        template: `
+        <div>
+            <h1> {{ aula }}</h1>
+            <h2>{{ modulo }}</h2>
+            <button @click="alterarAula">Alterar Aula</button>
+            <button @click="alterarModulo">Alterar Modulo</button>
+        </div>        
+        `,
+        data: {
+            aula: 'Aula: Montando Instância Vue',
+            modulo: 'Modulo: Instância Vue'
+        },
+        methods: {
+            alterarAula() {
+                this.aula += '#'
+            },
+            alterarModulo() {
+                this.modulo += '#'
+            }
+        }
+    })
+
+
+    //outra forma de montar a instância
+    //vm.$mount('#app'); 
+
+    //monta mas não injeta em lugar algum, pois não foi indicado nenhum destino de injeção
+    vm.$mount();
+
+    //o js puro abaixo pela o que foi montado e injeta na div #app
+    document.querySelector('#app').appendChild(vm.$el);
+</script>

@@ -1,0 +1,35 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
+<div id="app">
+
+    <p v-once>
+        <!-- v-once faz com que o valor não seja atualizado ao realizar por mudanças futuras -->
+        {{ titulo }}
+    </p>
+
+    <p>
+        {{ saudacao() }}
+    </p>
+    <a v-bind:href="link">Google</a>
+
+
+</div>
+
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            titulo: 'Usando VueJS!',
+            link: 'http://google.com.br'
+
+        },
+        methods: {
+            saudacao: function () {
+                this.titulo =
+                    'Bom dia!'; /* sempre que ocorre mudança no valor da instância, a view é atualizada. Logo, tudo que se relacionar tom "título", terá seu valor atualizado para o novo valor na view.*/
+                return this.titulo;
+            }
+        }
+    })
+</script>

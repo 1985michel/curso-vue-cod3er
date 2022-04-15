@@ -1,0 +1,60 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
+<div id="app">
+
+    <button v-on:click="aumentar">Aumentar</button>
+    <button v-on:click="contador2++">Aumentar 2</button>
+    <button v-on:click="diminuir">Diminuir</button>
+    <button v-on:click="contador2--">Diminuir 2</button>
+
+    <p>Contador: {{ contador }} | {{ contador2 }}</p>
+    <p>Resultado: {{ resultado }}</p>
+    <!-- Atenção! Como está dentro do "computed" deve-se chamar como atributo e não como método (sem o ()) 
+    ao que parece, há ganho de performance em colocar dentro do "computed", pois não chama a função desnecessariamente-->
+
+
+
+</div>
+
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            contador: 0,
+            contador2: 0,
+        },
+        computed: {
+            resultado() {
+                return this.contador >= 5 ? 'Maior ou igual a 5' : 'Menor que 5'
+            }
+        },
+        watch: {
+
+            /* watch monitora as alterações de alguma propriedade */
+
+            contador(novo, antigo) {
+                /* tem que ser o mesmo nome do data que você vai monitorar. E ele sempre informa o novo valor e o antigo 
+                indicado para chamadas de servidor, requisições ajax, etc.*/
+
+                /* abaixo é uma função que vai aguardar 2 segundos e então setar o contador para zero */
+                setTimeout(() => {
+                    this.contador = 0
+                }, 2000)
+            }
+        },
+        methods: {
+            aumentar() {
+                this.contador++;
+                resultado()
+            },
+            diminuir() {
+                this.contador--;
+                resultado()
+            },
+            /* resultado() {
+                return this.contador >= 5 ? 'Maior ou igual a 5' : 'Menor que 5'
+            } */
+        }
+    })
+</script>

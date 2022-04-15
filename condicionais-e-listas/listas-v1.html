@@ -1,0 +1,32 @@
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
+<div id="app">
+    <ul>
+        <li v-for="cor in cores" :teste="cor">{{ cor }}</li>
+        <!-- colocando os : ele faz o bind, criando um atributo com o valor -->
+    </ul>
+
+</div>
+
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            cores: ['vermelho', 'verde', 'amarelo', 'azul'],
+            pessoas: [
+                { nome: 'Ana', idade: 26, peso: 59 },
+                { nome: 'Guilherme', idade: 22, peso: 89 }
+            ]
+        },
+        methods: {
+            getFrutas2() {
+                return getFrutas();
+            }
+        }
+    })
+
+
+
+</script>

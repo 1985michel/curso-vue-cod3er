@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+
+</head>
+
+<body>
+    <div class="input-group">
+        Origem:
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">R$</span>
+        </div>
+        <input type="text" class="form-control money" placeholder="0,00" aria-label="Valor"
+            aria-describedby="basic-addon1">
+    </div>
+
+</body>
+
+</html>
+<div id="app">
+</div>
+
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            titulo: 'Usando VueJS!'
+        },
+        methods: {
+            saudacao: function () {
+                return `Boa semana!`;
+            }
+        },
+        created() {
+            $('.money').mask('000.000.000.000.000,00', { reverse: true });
+        }
+    })
+
+
+</script>

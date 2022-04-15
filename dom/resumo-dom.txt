@@ -1,0 +1,341 @@
+* Para importar o vuejs
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
+* O vue funciona dentro de uma div / elemento o qual deve ser identificado.
+    <div id="app"> <<< app </div> 
+
+    <script>
+        new Vue({
+        el: '#app', <<<< app data: { titulo: 'Usando VueJS!' } }) 
+    </script> 
+
+* Os dados do objeto Vue são gravados em data 
+
+    <script>
+        new Vue({
+        el: '#app', <<<< app 
+        data: { <<<< 
+            titulo: 'Usando VueJS!' 
+        } 
+        }) 
+    </script> 
+    
+* metodos comuns são gravados em methods 
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                titulo: 'Usando VueJS!',
+                link: 'http://google.com.br'
+            },
+            methods: { <<<<<<< 
+                saudacao: function () { 
+                    return `Boa semana!`; 
+                    } 
+            } }) 
+    </script> 
+    
+* tem também as PROPRIEDADES computadas (que são chamadas como uma propriedade comum) 
+
+    <p>
+        Resultado: {{ resultado }} <<< resultado (sem ()) 
+    </p>
+                    
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                contador: 0,
+                contador2: 0,
+            },
+            computed: {
+                /* Atenção!Propriedades computadas são síncronas, chamou a propriedade obrigatoriamente você precisa retornar o valor */
+                 resultado() { <<<<<<<<<< 
+                    return this.contador>= 5 ? 'Maior ou igual a 5' : 'Menor que 5'
+                }
+            }
+        })
+    </script>
+
+
+* e as propriedades monitoradas
+
+    <p>Contador: {{ contador }} </p>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                contador: 0,
+                contador2: 0,
+            },
+            computed: {
+                resultado() {
+                    return this.contador >= 5 ? 'Maior ou igual a 5' : 'Menor que 5'
+                }
+            },
+            watch: {
+
+                /* watch monitora as alterações de alguma propriedade */
+
+                contador(novo, antigo) {
+                    /* tem que ser o mesmo nome do data que você vai monitorar. E ele sempre informa o novo valor e o antigo 
+                    indicado para chamadas de servidor, requisições ajax, etc.*/
+
+                    /* abaixo é uma função que vai aguardar 2 segundos e então setar o contador para zero - temporizador - timer - tempo*/
+                    
+                    setTimeout(() => {
+                        this.contador = 0
+                    }, 2000)
+
+                    /*Há também o setInterval, que fica ciclando o código indefinidamente no intervalo determinado*/
+                    setInterval(() => {
+				            this.efeitoVigente = this.efeitoVigente == 'encolher' ? 'destaque' : 'encolher';
+			        }, 500)
+                }
+            },
+            methods: {
+
+            }
+        })
+    </script>
+
+* v-bind
+    V-BIND é um comando do Vue que faz o bind (ligação) da propriedade vinculada pegando o valor
+    do data especificado no vue
+
+    <a v-bind:href="link">Google</a>
+
+    <input type="text" :value="contador"> <!-- forma reduzida -->
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                titulo: 'Usando VueJS!',
+                link: 'http://google.com.br'
+
+            },
+            methods: {
+                saudacao: function () {
+                    return this
+                    .titulo; /* usa - se o this para acessar atributos ou funções do Vue */
+                }
+            }
+        })
+    </script>
+
+* v-html
+
+    <p v-html="linkHtml"></p>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                titulo: 'Usando VueJS!',
+                link: 'http://google.com.br',
+                linkHtml: '<a href="http://google.com.br">Google</a>' /* atenção que o texto a ser exibido tem que ser colocado aqui "Google" */
+
+            },
+            methods: {
+                saudacao: function () {
+                    this.titulo =
+                        'Bom dia!'
+                    return this.titulo
+                }
+            }
+        })
+    </script>
+
+* v-once
+    v-once faz com que o valor não seja atualizado ao realizar por mudanças futuras
+
+    <p v-once>
+        {{ titulo }}
+    </p>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                titulo: 'Usando VueJS!',
+                link: 'http://google.com.br'
+
+            },
+            methods: {
+                saudacao: function () {
+                    this.titulo =
+                        'Bom dia!'; /* sempre que ocorre mudança no valor da instância, a view é atualizada. Logo, tudo que se relacionar com "título", terá seu valor atualizado para o novo valor na view. Caso não queira que fique mudando, use v-once*/
+                    return this.titulo;
+                }
+            }
+        })
+    </script>
+
+* v-on:click
+
+    v-on:click é um observer do click do botão, chamando a função desiginada "somar"
+
+    <button v-on:click="somar">Somar 1</button>
+
+    <button @click="somar">Somar 1</button> <!-- reduzida -->
+
+    <button v-on:click="somar(5, $event)">Somar 1</button> $event passa o evento que ocorreu
+    como um parâmetro para a função. É palavra reservada
+
+
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                contador: 0
+            },
+            methods: {
+                somar() {
+                    << << <<
+                    this.contador++
+                }
+            }
+        })
+    </script>
+
+* v-on:click.prevent
+
+    o prevent bloqueia a função padrão do evento
+
+    <a v-on:click.prevent="" href="http://www.google.com">Google</a> Ao clicar não abre o link
+
+    <a v-on:click.prevent="naoNavegarei" href="http://www.google.com">Google</a> aqui faz as
+    duas coisas: não faz o padrão e ainda chama uma função pessoal
+
+    <a v-on:click="naoNavegar" href="http://www.google.com">Google</a>
+    <!-- mesma coisa mas no js -->
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+
+            },
+            methods: {
+                naoNavegarei() {
+                    alert("Não navegarei!");
+                }
+            }
+
+        })
+    </script>
+
+* v-on:mousemove
+
+    <p v-on:mousemove="atualizarXY">Mouse: {{x}} e {{y}}</p>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                contador: 0,
+                x: 0,
+                y: 0
+            },
+            methods: {
+                somar() {
+                    this.contador++
+                },
+                atualizarXY(event) {
+                    /* função que monitora o movimento do mouse sobre o parágrafo */
+                    this.x = event.clientX
+                    this.y = event.clientY
+                }
+            }
+
+        })
+    </script>
+
+* v-on:mousemove.stop
+
+    bloqueia a mouse move sobre determinada area interna à area monitorada
+
+    <p v-on:mousemove="atualizarXY">
+        <span v-on:mousemove.stop="">PARA AQUI!!!</span> <!-- os dois fazem a mesma função -->
+        Mouse: {{x}} e {{y}}
+        <span v-on:mousemove="parar">PARA AQUI!!!</span> <!-- os dois fazem a mesma função -->
+    </p>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                contador: 0,
+                x: 0,
+                y: 0
+            },
+            methods: {
+                atualizarXY(event) {
+                    /* função que monitora o movimento do mouse sobre o parágrafo */
+                    this.x = event.clientX
+                    this.y = event.clientY
+                },
+                parar(event) {
+                    /* faz com que a atualização dos movimentos do mouse não funcionem sobre o span */
+                    event.stopPropagation();
+
+                }
+            }
+
+        })
+    </script>
+
+* v-on:keyup.x
+
+    Monitora se determinada teclara é pressionada
+
+    <input type="text" v-on:keyup="exibirAlerta">
+    <br>
+    <input type="text" v-on:keyup.enter="exibirAlertaEnter">
+    <br>
+    <input type="text" v-on:keyup.alt.enter="exibirAlertaAltEnter">
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                contador: 0,
+                x: 0,
+                y: 0
+            },
+            methods: {
+                exibirAlerta() {
+                    alert("tecla apertada!")
+                },
+                exibirAlertaEnter() {
+                    alert("Deu enter!")
+                },
+                exibirAlertaAltEnter() {
+                    alert("Deu Alt Enter!")
+                }
+            }
+        })
+    </script>
+
+* v-model e two way binding
+
+    <!-- O exemplo abaixo é o two way data binding: ou seja, a variável "titulo" determina o conteúdo do input e alterações no input alteram o valor da variável título -->
+
+    <input type="text" v-bind:value="titulo" v-on:input=" titulo= $event.target.value">
+
+    <!-- O v-model faz as duas coisas com um só comando! -->
+    <p>v-model</p>
+    <input type="text" v-model="titulo">
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                titulo: 'Usando VueJS!'
+            }
+        })
+    </script>

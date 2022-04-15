@@ -1,0 +1,29 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
+<div id="app">
+
+    <p>
+        {{ titulo }}
+    </p>
+
+    <p>
+        {{ saudacao() }}
+        <!-- Atenção! Tudo o que é retornado ao html tem que ser uma string ou valor numérico (que é convertido para string automaticamente) -->
+    </p>
+
+</div>
+
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            titulo: 'Usando VueJS!'
+        },
+        methods: {
+            saudacao: function () {
+                return `Boa semana!`;
+            }
+        }
+    })
+</script>
