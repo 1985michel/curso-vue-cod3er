@@ -1,0 +1,37 @@
+
+
+//criar projetos
+
+vue create nome-do-projetos
+
+    daí seleciona default ou escolhe os recursos manualmene
+
+// inicializar o servidor
+
+npm run serve
+
+//adicionar o electron
+
+vue add alectron-builder
+
+//startando o servidor do electron
+
+npm run electron:serve
+
+//adicionar vuetify
+
+vue add vuetify
+
+//fazer build da aplicação   SE QUISER SEM SER DO ELECTRON É SO NÃO COLOCAR A PALAVRA ELECTRON
+npm run electron:build
+
+    //o aquivo vai estar em NOME DO PROJETO\dist_electron\win-unpacked\
+
+//tutorial de vue todo escrito em português: https://br.vuejs.org/v2/guide/installation.html
+
+//tutorial de vuecli em português: https://cli.vuejs.org/guide/
+
+
+
+
+
