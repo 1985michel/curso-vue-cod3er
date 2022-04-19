@@ -31,6 +31,10 @@ npm run electron:build
 
 //tutorial de vuecli em português: https://cli.vuejs.org/guide/
 
+//scaffold [na minha máquina é vueinit]cria a estrutura base do arquivo .vue
+
+//npm i [baixa e instala as dependências daquele projeto]
+
 
 
 
