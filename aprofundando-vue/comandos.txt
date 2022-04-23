@@ -12,7 +12,7 @@ npm run serve
 
 //adicionar o electron
 
-vue add alectron-builder
+vue add electron-builder
 
 //startando o servidor do electron
 
@@ -34,6 +34,16 @@ npm run electron:build
 //scaffold [na minha máquina é vueinit]cria a estrutura base do arquivo .vue
 
 //npm i [baixa e instala as dependências daquele projeto]
+
+//para saber mais sombre componentes: https://br.vuejs.org/v2/guide/components.html
+
+//para gerar um clone de um array:  [...array]
+
+//site paga pegar backgrounds uigradients.com
+
+//database para electron https://stackoverflow.com/questions/51119248/electron-app-with-database
+
+
 
 
 
