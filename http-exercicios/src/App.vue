@@ -6,14 +6,14 @@
 
 <script>
 export default {
-  //   created() {
-  //     this.$http
-  //       .post("usuarios.json", {
-  //         nome: "Maria",
-  //         email: "maria@email.com",
-  //       })
-  //       .then((res) => console.log(res));
-  //   },
+  created() {
+    this.$http
+      .post("usuarios.json", {
+        nome: "José",
+        email: "jose@email.com",
+      })
+      .then((res) => console.log(res));
+  },
 };
 </script>
 
