@@ -20,7 +20,11 @@ npm run electron:serve
 
 //adicionar vuetify
 
+npm install vuetify
 vue add vuetify
+
+//add vue mask - https://www.npmjs.com/package/v-mask
+npm install v-mask
 
 //fazer build da aplicação   SE QUISER SEM SER DO ELECTRON É SO NÃO COLOCAR A PALAVRA ELECTRON
 npm run electron:build

@@ -7,7 +7,6 @@
         <span class="close" @click.stop="$emit('taskDeleted', task)">x</span>
         <!-- o click.stop faz com que não chame o click dos outros componentes, no caso da div de fora -->
 
-
         <p>{{ task.name }}</p>
     </div>
 </template>
@@ -37,7 +36,7 @@ export default {
   font-size: 2rem;
   font-weight: 300;
   cursor: pointer; /*faz o mouse virar a o dedinho indicador */
-  user-select: none; /* impede o usuário de poder selecionar o texto*/
+  /* user-select: none;  impede o usuário de poder selecionar o texto*/
   display: flex;
   justify-content: center;
   align-items: center;

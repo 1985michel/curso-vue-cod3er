@@ -14,7 +14,7 @@ export default {
 <style>
 .tasks-progress {
   position: relative;
-  width: 80%;
+  width: 100%;
   border: 1px solid #fff;
   color: #fff;
   border-radius: 8px;

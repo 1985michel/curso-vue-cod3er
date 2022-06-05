@@ -1,0 +1,11 @@
+
+
+1 - add o axios no projeto
+
+2 - acesse firebase.google.com e crie o banco de dados just in time
+
+3 - peque a url do banco de dados
+
+4 - crie o arquivo axios.js e coloque a URL nele. A partir daí bastará usar $http que você estará dando commandos para o firebase
+
+5 - 
